@@ -47,5 +47,3 @@ icon = pystray.Icon("Application", image, menu=pystray.Menu(
 
 # Run the application
 icon.run()
-
-#lol
