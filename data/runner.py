@@ -7,17 +7,22 @@ class Runner:
         pass
 
     # must contain this function input signature
-    def exampleRun(args : list[str]) -> int:
+    def exampleRun(args: list[str]) -> int:
         return 0
-    
-    def concatArgs(args : list[str]) -> str: 
+
+    def concatArgs(args: list[str]) -> str:
         return ",".join(args)
-    
+
     # remember to use a unique key and add the function to the map here
-    funcMap : dict[str, Callable[..., int]]= {
+    funcMap: dict[str, Callable[..., int]] = {
         "exampleRun": exampleRun,
         "concatArgs": concatArgs
     }
+
+    # helper method used to register functions
+    def register_function(self, name: str, func: Callable[..., int]) -> None:
+        self.funcMap[name] = func
+
 
     # entry point 
     def run(self, key: str, args: list[str]):
@@ -25,9 +30,7 @@ class Runner:
             method = self.funcMap[key]
             if callable(method):
                 return method(args)
-            else: 
+            else:
                 raise KeyError(f"Non-callable key: {key}")
         else:
             raise KeyError(f"No such function: {key}")
-        
-
